@@ -4,6 +4,9 @@
   "main": "index.js",
   "author": "Mongark <mongarkprogrammer@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "test": "ts-jest"
+  },
   "dependencies": {
     "bcrypt": "^5.1.0",
     "dotenv": "^16.0.3",
