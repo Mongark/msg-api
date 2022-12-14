@@ -12,15 +12,17 @@ const healthRouter = express.Router();
 
 const MONGO_URL: string = (!process.env.DATABASE_URL) ? "" : process.env.DATABASE_URL;
 
+mongoose.set('strictQuery', true);
 mongoose.connect(MONGO_URL);
-const database = mongoose.connection;
 
+const database = mongoose.connection;
 database.on('error', (err) => console.log(err));
 
 app.use(express.json());
 app.use(cors());
 
-app.get('/ping', (req: express.Request, res: express.Response) => res.status(200).json("pong"));
+
+app.get('/ping', (_req: express.Request, res: express.Response) => res.status(200).json("pong"));
 
 app.use("/", healthRouter);
 app.use("/", message_router);
