@@ -1,9 +1,13 @@
 import express from "express";
 import cors from "cors";
+import dotenv from "dotenv";
+
 import message_router from "./routes/message_router";
 
 const app = express();
 const healthRouter = express.Router();
+
+dotenv.config();
 
 app.use(express.json());
 app.use(cors());
