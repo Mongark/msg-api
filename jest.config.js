@@ -8,6 +8,7 @@ module.exports = {
 
     clearMocks: false,
     maxWorkers: "100%",
+    verbose: true,
 
     transform: {
         "^.+\\.ts?$": ["@swc/jest"],

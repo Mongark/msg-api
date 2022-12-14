@@ -8,10 +8,8 @@ describe("Connection test", () => {
     it("should return a valid response to '/ping'", async() => {
         const res = await server.get("/ping");
 
-        console.log(res.type);
         expect(res.status).toEqual(200);
         expect(res.headers["content-type"]).toEqual("application/text; charset=utf-8");
-        expect(res.body).toEqual("pong");
-
+        expect(res.text).toEqual("pong");
     });
 });
