@@ -8,7 +8,6 @@ app.use(express.json());
 app.use(cors());
 
 app.get('/ping', (req: express.Request, res: express.Response) => {
-    res.setHeader("content-type", "application/json");
     res.status(200);
     res.json("pong");
 });
