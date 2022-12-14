@@ -7,10 +7,7 @@ const healthRouter = express.Router();
 app.use(express.json());
 app.use(cors());
 
-app.get('/ping', (req: express.Request, res: express.Response) => {
-    res.status(200);
-    res.json("pong");
-});
+app.get('/ping', (req: express.Request, res: express.Response) => res.status(200).json("pong"));
 
 app.use("/", healthRouter);
 
