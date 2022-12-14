@@ -1,6 +1,5 @@
 import express from "express";
 import cors from "cors";
-import bodyParser from "body-parser";
 
 const app = express();
 const healthRouter = express.Router();
@@ -8,10 +7,10 @@ const healthRouter = express.Router();
 app.use(express.json());
 app.use(cors());
 
-app.get('/ping', (req, res) => {
-    res.setHeader("content-type", "application/text");
+app.get('/ping', (req: express.Request, res: express.Response) => {
+    res.setHeader("content-type", "application/json");
     res.status(200);
-    res.send("pong");
+    res.json("pong");
 });
 
 app.use("/", healthRouter);

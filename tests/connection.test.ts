@@ -9,7 +9,7 @@ describe("Connection test", () => {
         const res = await server.get("/ping");
 
         expect(res.status).toEqual(200);
-        expect(res.headers["content-type"]).toEqual("application/text; charset=utf-8");
-        expect(res.text).toEqual("pong");
+        expect(res.headers["content-type"]).toEqual("application/json; charset=utf-8");
+        expect(res.body).toEqual("pong");
     });
 });
