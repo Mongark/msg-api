@@ -14,21 +14,27 @@ async function post_message(req: Request, res: Response) {
         return;
     }
 
-    const is_valid: any = await message_model.validate(data);
+    // const is_valid: any = await message_model.validate(data);
 
-    if( !is_valid ) {
-        res.status(400).json("Post request has a invalid body");
-        return;
-    }
+    // if( !is_valid ) {
+        // res.status(400).json("Post request has a invalid body");
+        // return;
+    // }
 
     const message = await message_model.create(data);
 
     if (is_empty(message)) {
-        res.status(300).json("Message could not be posted");
+        res.status(502).json("Bad Gateway: failed to query MongoDB instance");
         return;
     }
 
-    res.status(200).json({msg: "success", data: message});
+    // ISSUE: security breach
+    if( req.headers["testing"] ) {
+        res.status(201).json({msg: "success", data: message});
+        return;
+    }
+
+    res.status(201).json("success");
 
     return;
 }
