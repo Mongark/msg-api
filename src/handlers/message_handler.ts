@@ -8,11 +8,11 @@ function post_message(req: Request, res: Response, next: NextFunction) {
     const data = req.body;
 
     if (is_empty(data)) {
-        res.status(400).send("Post request has empty body");
+        res.status(400).json("Post request has empty body");
         next();
     }
 
-    res.status(200).json("hellow");
+    res.status(200).json("success");
 
     next();
 }
