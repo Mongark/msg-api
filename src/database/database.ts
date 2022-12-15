@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 
-
 export function connectDB() {
     const MONGO_URL: string = process.env.DATABASE_URL;
 
