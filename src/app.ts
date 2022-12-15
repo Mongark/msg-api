@@ -10,11 +10,12 @@ dotenv.config();
 const app = express();
 const healthRouter = express.Router();
 
-connectDB();
+const db = connectDB();
+
+if(!db) throw("DB failed to connect");
 
 app.use(express.json());
 app.use(cors());
-
 
 app.get('/ping', (_req: express.Request, res: express.Response) => res.status(200).json("pong"));
 
