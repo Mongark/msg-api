@@ -1,15 +1,14 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import { debug } from "console";
 
-import message_router from "./routes/message_router";
 import { connectDB } from "./database/database";
-import {debug} from "console";
+import master_router from "./routers/master_router";
 
 dotenv.config();
 
 const app = express();
-const healthRouter = express.Router();
 
 const db = connectDB();
 
@@ -21,13 +20,11 @@ process.on('SIGTERM', () => {
     });
 });
 
+app.use(master_router);
+
 app.use(express.json());
 app.use(cors());
 
-app.get('/ping', (_req: express.Request, res: express.Response) => res.status(200).json("pong"));
-
-app.use("/", healthRouter);
-app.use("/", message_router);
 
 export default app;
 

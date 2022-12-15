@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import message_handler from "../handlers/message_handler";
+import message_handler from "../../handlers/message_handler";
 
 const message_router = Router();
 
