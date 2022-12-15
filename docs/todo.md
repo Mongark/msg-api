@@ -1,18 +1,17 @@
 # To-Do
 ## Setups
--[ ] Setup ExpressJS server
--[ ] Setup scripts for Jest
- -[ ] `fast-test` Jest with SWC
- -[ ] `test` Jest with ts-loader
+-[x] Setup ExpressJS server
+-[x] Setup scripts for Jest
+ -[x] `test` Jest with SWC
 -[ ] Setup WebPack for production and development builds
 
 ## Endpoints
 
 ### Health
--[ ] `GET       /ping`      Returns pong. For connection checking
+-[x] `GET       /ping`      Returns pong. For connection checking
 
 ### Messages
--[ ] `POST      /message`   Posts a message to MongoDB
+-[-] `POST      /message`   Posts a message to MongoDB
 -[ ] `GET       /messages`  Gets all messages in MongoDB
 -[ ] `GET       /message`   Gets a message from MongoDB
 -[ ] `PATCH     /message`   Modifies a message from MongoDB
