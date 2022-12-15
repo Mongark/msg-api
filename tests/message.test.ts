@@ -11,4 +11,11 @@ describe("Routes in 'message_router'", () => {
         expect(res.status).toEqual(400);
         expect(res.body).toEqual("Post request has empty body");
     });
+
+    it("should return a error 300 upon sending an invalid body to 'POST /message'", async() => {
+        const res = await server.post("/message").send({incorret: "msg"});
+
+        expect(res.status).toEqual(400);
+        expect(res.body).toEqual("Post request has a invalid body");
+    });
 });
