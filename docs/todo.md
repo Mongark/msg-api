@@ -11,7 +11,7 @@
 -[x] `GET       /ping`      Returns pong. For connection checking
 
 ### Messages
--[-] `POST      /message`   Posts a message to MongoDB
+-[x] `POST      /message`   Posts a message to MongoDB
 -[ ] `GET       /messages`  Gets all messages in MongoDB
 -[ ] `GET       /message`   Gets a message from MongoDB
 -[ ] `PATCH     /message`   Modifies a message from MongoDB
