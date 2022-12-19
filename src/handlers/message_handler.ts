@@ -6,6 +6,18 @@ function is_empty(data: any) {
     return Object.keys(data).length === 0;
 }
 
+async function get_message(req: Request, res: Response) {
+    const message_id = req.query.id;
+
+    if (!message_id) {
+        res.status(400).json("Post request has empty body");
+        return;
+    }
+
+    res.status(201).json("success");
+    return;
+}
+
 async function post_message(req: Request, res: Response) {
     const data = req.body;
 
@@ -13,13 +25,6 @@ async function post_message(req: Request, res: Response) {
         res.status(400).json("Post request has empty body");
         return;
     }
-
-    // const is_valid: any = await message_model.validate(data);
-
-    // if( !is_valid ) {
-        // res.status(400).json("Post request has a invalid body");
-        // return;
-    // }
 
     const message = await message_model.create(data);
 
@@ -29,7 +34,7 @@ async function post_message(req: Request, res: Response) {
     }
 
     // ISSUE: security breach
-    if( req.headers["testing"] ) {
+    if( req.headers["in-testing-env"] ) {
         res.status(201).json({msg: "success", data: message});
         return;
     }
@@ -39,6 +44,6 @@ async function post_message(req: Request, res: Response) {
     return;
 }
 
-const message_handler = { post_message };
+const message_handler = { post_message, get_message };
 
-export default  message_handler;
+export default message_handler;

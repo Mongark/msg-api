@@ -27,7 +27,7 @@ describe("Routes in 'message_router'", () => {
     it("should return a status code of 201 upon sending an valid body to 'POST /message'", async() => {
         const res = await server
             .post("/message").send(msg)
-            .set('testing', true);
+            .set('in-testing-env', true);
 
         expect(res.status).toEqual(201);
 
@@ -38,5 +38,12 @@ describe("Routes in 'message_router'", () => {
         }
 
         expect(data).toEqual(msg);
+    });
+
+    it("should return a error 400 upon sending an empty query to 'GET /message'", async() => {
+        const res = await server.get("/message");
+
+        expect(res.status).toEqual(400);
+        expect(res.body).toEqual("Post request has empty body");
     });
 });
