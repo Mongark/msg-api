@@ -30,13 +30,6 @@ describe("Routes in 'message_router'", () => {
         expect(res.body).toEqual("Post request has empty body");
     });
 
-    // it("should return a error 400 upon sending an invalid body to 'POST /message'", async() => {
-        // const res = await server.post("/message").send({incorret: "msg"});
-
-        // expect(res.status).toEqual(400);
-        // expect(res.body).toEqual("Post request has a invalid body");
-    // });
-
     it("should return a status code of 201 upon sending an valid body to 'POST /message'", async() => {
         const res = await server
             .post("/message").send(msg)
