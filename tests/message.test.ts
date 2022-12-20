@@ -74,4 +74,12 @@ describe("Routes in 'message_router'", () => {
         expect(res.status).toEqual(201);
         expect(res.body.msg).toEqual("success");
     });
+
+    it("should return code 201 upon sending a valid query to 'GET /message'", async() => {
+        const res = await server.get("/messages");
+
+        expect(res.status).toEqual(201);
+        expect(res.body.msg).toEqual("success");
+        expect(res.body.data).toBeTruthy();
+    });
 });
