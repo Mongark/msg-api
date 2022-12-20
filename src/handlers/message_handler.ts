@@ -41,7 +41,7 @@ async function post_message(req: Request, res: Response) {
         return;
     }
 
-    // ISSUE: security breach
+    // ISSUE: pretty sure this is a security breach
     if( req.headers["in-testing-env"] ) {
         res.status(201).json({msg: "success", data: message});
         return;
