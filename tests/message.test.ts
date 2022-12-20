@@ -46,6 +46,13 @@ describe("Routes in 'message_router'", () => {
         expect(data).toEqual(msg);
     });
 
+    it("should return a error 400 upon sending an empty query to 'GET /message'", async() => {
+        const res = await server.get("/message");
+
+        expect(res.status).toEqual(400);
+        expect(res.body.msg).toEqual("Get request has empty body");
+    });
+
     it("should return a error 502 upon sending an invalid query to 'GET /message'", async() => {
         const res = await server.get("/message").query({id: '12345679'});
 
@@ -53,10 +60,18 @@ describe("Routes in 'message_router'", () => {
         expect(res.body.msg).toEqual("Get request has invalid query id");
     });
 
-    it("should return a error 400 upon sending an empty query to 'GET /message'", async() => {
-        const res = await server.get("/message");
+    it("should return code 201 upon sending a valid query to 'GET /message'", async() => {
+        const message = await server
+            .post("/message").send(msg)
+            .set('in-testing-env', 'true');
 
-        expect(res.status).toEqual(400);
-        expect(res.body.msg).toEqual("Get request has empty body");
+        const msg_id = message.body.data._id;
+
+        expect(msg_id).toBeTruthy();
+
+        const res = await server.get("/message").query({id: msg_id});
+
+        expect(res.status).toEqual(201);
+        expect(res.body.msg).toEqual("success");
     });
 });
