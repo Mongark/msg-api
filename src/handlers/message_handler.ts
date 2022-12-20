@@ -1,9 +1,22 @@
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
 
 import message_model from "../data/models/message_model";
 
 function is_empty(data: any) {
     return Object.keys(data).length === 0;
+}
+
+function get_messages(req: Request, res: Response) {
+    const messages_data = message_model.find();
+
+    messages_data.exec((err, messages) => {
+        if(err) {
+            res.status(502).json({msg: "error", err: err});
+            return;
+        }
+
+        res.status(201).json({msg: "success", data: messages});
+    });
 }
 
 function get_message(req: Request, res: Response) {
@@ -52,6 +65,6 @@ async function post_message(req: Request, res: Response) {
     return;
 }
 
-const message_handler = { post_message, get_message };
+const message_handler = { post_message, get_message, get_messages };
 
 export default message_handler;
