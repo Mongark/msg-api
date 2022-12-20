@@ -17,9 +17,12 @@ function get_message(req: Request, res: Response) {
     const message_data = message_model.findById(message_id);
 
     message_data.exec((err, message) => {
-        if(err) res.status(502).json({msg: "Get request has invalid query id", err: err});
+        if(err) {
+            res.status(502).json({msg: "Get request has invalid query id", err: err});
+            return;
+        }
 
-
+        res.status(201).json({msg: "success", data: message});
     });
 }
 
