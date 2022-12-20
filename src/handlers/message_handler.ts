@@ -11,7 +11,7 @@ function get_messages(req: Request, res: Response) {
 
     messages_data.exec((err, messages) => {
         if(err) {
-            res.status(502).json({msg: "error", err: err});
+            res.status(502).json({msg: "error", data: err});
             return;
         }
 
@@ -23,7 +23,7 @@ function get_message(req: Request, res: Response) {
     const message_id = req.query.id;
 
     if (!message_id) {
-        res.status(400).json({msg: "Get request has empty body"});
+        res.status(400).json({msg: "Get request has empty body", data: message_id});
         return;
     }
 
@@ -31,7 +31,7 @@ function get_message(req: Request, res: Response) {
 
     message_data.exec((err, message) => {
         if(err) {
-            res.status(502).json({msg: "Get request has invalid query id", err: err});
+            res.status(502).json({msg: "Get request has invalid query id", data: err});
             return;
         }
 
@@ -43,14 +43,14 @@ async function post_message(req: Request, res: Response) {
     const data = req.body;
 
     if (is_empty(data)) {
-        res.status(400).json("Post request has empty body");
+        res.status(400).json({msg: "Post request has empty body", data: data});
         return;
     }
 
     const message = await message_model.create(data);
 
     if (is_empty(message)) {
-        res.status(502).json("Bad Gateway: failed to query MongoDB instance");
+        res.status(502).json({msg: "Bad Gateway: failed to query MongoDB instance", data: message});
         return;
     }
 

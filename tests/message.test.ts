@@ -27,7 +27,7 @@ describe("Routes in 'message_router'", () => {
         const res = await server.post("/message");
 
         expect(res.status).toEqual(400);
-        expect(res.body).toEqual("Post request has empty body");
+        expect(res.body.msg).toEqual("Post request has empty body");
     });
 
     it("should return a status code of 201 upon sending an valid body to 'POST /message'", async() => {
@@ -36,6 +36,7 @@ describe("Routes in 'message_router'", () => {
             .set('in-testing-env', 'true');
 
         expect(res.status).toEqual(201);
+        expect(res.body.data).toBeTruthy();
 
         const data = {
             from_user: res.body.data['from_user'],
@@ -51,6 +52,7 @@ describe("Routes in 'message_router'", () => {
 
         expect(res.status).toEqual(400);
         expect(res.body.msg).toEqual("Get request has empty body");
+        expect(res.body.data).toBeFalsy();
     });
 
     it("should return a error 502 upon sending an invalid query to 'GET /message'", async() => {
@@ -58,6 +60,7 @@ describe("Routes in 'message_router'", () => {
 
         expect(res.status).toEqual(502);
         expect(res.body.msg).toEqual("Get request has invalid query id");
+        expect(res.body.data).toBeTruthy();
     });
 
     it("should return code 201 upon sending a valid query to 'GET /message'", async() => {
@@ -73,6 +76,7 @@ describe("Routes in 'message_router'", () => {
 
         expect(res.status).toEqual(201);
         expect(res.body.msg).toEqual("success");
+        expect(res.body.data).toBeTruthy();
     });
 
     it("should return code 201 upon sending a valid query to 'GET /message'", async() => {
