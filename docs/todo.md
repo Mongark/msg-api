@@ -12,7 +12,7 @@
 
 ### Messages
 -[x] `POST      /message`   Posts a message to MongoDB
--[-] `GET       /messages`  Gets all messages in MongoDB
+-[x] `GET       /messages`  Gets all messages in MongoDB
 -[x] `GET       /message`   Gets a message from MongoDB
 -[ ] `PATCH     /message`   Modifies a message from MongoDB
 -[ ] `DELETE    /message`   Deletes a message

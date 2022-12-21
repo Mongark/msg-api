@@ -9,3 +9,4 @@ ExpressJS API for a messaging application.
 * `GET /ping` For health checking.
 * `POST /message <data>` For posting new messages.
 * `GET /message/:id` For gettting a message.
+* `GET /messages` For gettting all messages.
