@@ -19,6 +19,8 @@ function get_messages(req: Request, res: Response) {
     });
 }
 
+function patch_message(req: Request, res: Response) {}
+
 function get_message(req: Request, res: Response) {
     const message_id = req.query.id;
 
@@ -65,6 +67,6 @@ async function post_message(req: Request, res: Response) {
     return;
 }
 
-const message_handler = { post_message, get_message, get_messages };
+const message_handler = { patch_message, post_message, get_message, get_messages };
 
 export default message_handler;
