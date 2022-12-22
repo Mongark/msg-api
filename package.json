@@ -5,6 +5,7 @@
   "author": "Mongark <mongarkprogrammer@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "dev": "nodemon src/server.ts",
     "test": "jest"
   },
   "dependencies": {
