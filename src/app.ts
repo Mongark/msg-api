@@ -1,17 +1,32 @@
-import express from "express";
-import cors from "cors";
+import express, { Router, json } from 'express';
+import mongoose from 'mongoose';
 import dotenv from "dotenv";
 
-import master_router from "./routers/master_router";
+import cors from 'cors';
+
+import MessageRoutes from './routes/messageRouter';
 
 dotenv.config();
 
+const MONGO_URL: string = (!process.env.DATABASE_URL) ? "" : process.env.DATABASE_URL; // TODO: find more elegant solution to this line.
+
+
+mongoose.connect(MONGO_URL);
+const database = mongoose.connection;
+
+const masterRouter = Router();
 const app = express();
 
-app.use(express.json());
+database.on('error', (error) => {
+    console.log(error);
+})
+
+app.use(json());
 app.use(cors());
 
-app.use(master_router);
+masterRouter.get('/ping', (req, res) => res.status(200).send("pong"));
+masterRouter.use('/messages', MessageRoutes);
+
+app.use('/api', masterRouter);
 
 export default app;
-
