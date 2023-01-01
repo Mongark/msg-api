@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import cors from 'cors';
 
 import MessageRoutes from './routes/messageRouter';
+import UserRoutes from './routes/userRouter';
 
 dotenv.config();
 
@@ -26,6 +27,7 @@ app.use(cors());
 
 masterRouter.get('/ping', (req, res) => res.status(200).send("pong"));
 masterRouter.use('/messages', MessageRoutes);
+masterRouter.use('/users', UserRoutes);
 
 app.use('/api', masterRouter);
 
