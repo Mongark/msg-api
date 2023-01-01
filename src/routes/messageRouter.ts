@@ -3,36 +3,40 @@ import MessageModel from "../data/models/messageModel";
 import RouteType from "../generators/CommonTypes/RouteType";
 import RouterFactory from "../generators/Factories/RouterFactory";
 
+function createMessageMiddleware(type: string) {
+    return ControllerFactory.create(type, MessageModel);
+}
+
 const config: RouteType[] = [
     {
         type:       "GET",
         uri:        "/getOneById/:id",
-        middleware: ControllerFactory.create("GET_BY_ID", MessageModel),
+        middleware: createMessageMiddleware("GET_BY_ID"),
     },
     {
         type:       "GET",
         uri:        "/getAll",
-        middleware: ControllerFactory.create("GET_ALL", MessageModel),
+        middleware: createMessageMiddleware("GET_ALL"),
     },
     {
         type:       "GET",
         uri:        "/getCount",
-        middleware: ControllerFactory.create("GET_COUNT", MessageModel),
+        middleware: createMessageMiddleware("GET_COUNT"),
     },
     {
         type:       "POST",
         uri:        "/postOne",
-        middleware: ControllerFactory.create("POST_ONE", MessageModel),
+        middleware: createMessageMiddleware("POST_ONE"),
     },
     {
         type:       "PATCH",
         uri:        "/updateOneById/:id",
-        middleware: ControllerFactory.create("UPDATE_BY_ID", MessageModel),
+        middleware: createMessageMiddleware("UPDATE_BY_ID"),
     },
     {
         type:       "DELETE",
         uri:        "/deleteOneById/:id",
-        middleware: ControllerFactory.create("DELETE_BY_ID", MessageModel),
+        middleware: createMessageMiddleware("DELETE_BY_ID"),
     },
 ];
 
